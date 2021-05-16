@@ -1,0 +1,12 @@
+#Docker
+.dockerignore
+Dockerfile
+
+# Git and GitHub
+.git/
+.gitignore
+.github
+
+# IDE
+venv/
+.idea/
