@@ -11,14 +11,15 @@ def sqlite_connect() -> sqlite3.Connection:
 
     If you are getting thrown an error when trying to connect, make sure 'jobs.db' exists.
     If it doesn't, run the follow lines of code:
+    
     ```
     conn = sqlite3.connect('jobs.db')
     c = conn.cursor()
     c.execute('CREATE TABLE jobs (title TEXT, company TEXT, date_applied TEXT, url TEXT)')
     conn.commit()
     ```
+    
     :returns: A SQLite connection.
-    :returns: A cursor to the connection.
     """
     conn = None
 
@@ -33,7 +34,8 @@ def sqlite_connect() -> sqlite3.Connection:
 def mysql_connect() -> mysql.connector:
     """
     Connect to MySQL database.
-    Make to edit the config file with your personal parameters.
+    Edit the config file with your personal parameters.
+    
     :returns: A MySQL connection.
     """
     conn = None
