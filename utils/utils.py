@@ -1,8 +1,20 @@
-import os
+import logging
 import sqlite3
 import configparser
 import mysql.connector
 from mysql.connector import Error
+
+# Set up log file
+# This method allows the use of different loggers
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)  # Reads levels INFO and higher: 1. DEBUG, 2. INFO, 3. WARNING, 4. ERROR, 5. CRITICAL
+
+formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(message)s')
+
+file_handler = logging.FileHandler('database.log')
+file_handler.setFormatter(formatter)
+
+logger.addHandler(file_handler)
 
 
 def sqlite_connect() -> sqlite3.Connection:
@@ -26,7 +38,7 @@ def sqlite_connect() -> sqlite3.Connection:
     try:
         conn = sqlite3.connect('jobs.db')
     except sqlite3.DatabaseError as e:
-        print(e)
+        logger.error(e)
     finally:
         return conn
 
@@ -54,6 +66,8 @@ def mysql_connect() -> mysql.connector:
                                        user=user,
                                        password=password)
     except Error as e:
-        print(e)
+        logger.error(e)
     finally:
+        if conn:
+            logger.info('Connected to database.')
         return conn
