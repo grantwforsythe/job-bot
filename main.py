@@ -13,19 +13,19 @@ from utils.utils import sqlite_connect
 from scripts.indeed import extract, transform
 
 if __name__ == '__main__':
-    print('Options: ')
-    print('1. Do you want to search Indeed?')
-    print('2. Do you apply to any postings?')
-    print('3. Do you want to view postings applied to?')
-    print('4. Quit?')
+
     while True:
-        print('Response: ')
-        response = int(input())
+        print('Options: ')
+        print('1. Do you want to search Indeed?')
+        print('2. Do you apply to any postings?')
+        print('3. Do you want to view postings applied to?')
+        print('4. Quit?')
+
+        response = int(input('Response: '))
+        
         if response == 1:
-            print('Job title:')
-            title = input()
-            print('Location:')
-            location = input()
+            title = input('Job title: ')
+            location = input('Location: ')
 
             soup = extract(title, location)
             df = transform(soup)
